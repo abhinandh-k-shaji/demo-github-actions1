@@ -15,7 +15,9 @@ jobs:
 
       - name: Display Current Date and Time
         run: date
-
+  second-task:
+    runs-on: ubuntu-latest
+    steps:
       - name: Display Current Working Directory
         run: pwd
 
@@ -24,4 +26,6 @@ jobs:
 
       - name: Display Completion Message
         run: echo "All tasks completed successfully!"
+
+      
 
