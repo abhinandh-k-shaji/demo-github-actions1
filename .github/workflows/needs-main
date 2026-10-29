@@ -1,0 +1,64 @@
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+
+  # Job 1: Build the application
+  build:
+    name: Build Application
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Application
+        run: echo "Building the application..."
+
+      - name: Build Completed
+        run: echo "Build completed successfully!"
+
+  # Job 2: Run unit tests after build
+  unit-test:
+    name: Unit Testing
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Run Unit Tests
+        run: echo "Executing unit tests..."
+
+      - name: Unit Test Result
+        run: echo "Unit tests passed!"
+
+  # Job 3: Run security tests after build
+  security-test:
+    name: Security Testing
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Run Security Scan
+        run: echo "Executing security scan..."
+
+      - name: Security Test Result
+        run: echo "Security tests passed!"
+
+  # Job 4: Deploy after both tests succeed
+  deploy:
+    name: Deploy Application
+    runs-on: ubuntu-latest
+    needs: [unit-test, security-test]
+
+    steps:
+      - name: Deploy Application
+        run: echo "Deploying the application..."
+
+      - name: Deployment Completed
+        run: echo "Deployment completed successfully!"
