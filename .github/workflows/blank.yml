@@ -16,6 +16,7 @@ jobs:
       - name: Display Current Date and Time
         run: date
   second-task:
+    needs: basic-tasks 
     runs-on: ubuntu-latest
     steps:
       - name: Display Current Working Directory
